@@ -16,7 +16,7 @@ public class Main {
     {
         String input="Algorithms";
 
-        return new String[]{input.substring(2, 3), input.substring(0, 3)};
+        return new String[]{input.substring(2, 4), input.substring(0, 4)};
 
 
     }
