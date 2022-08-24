@@ -64,21 +64,31 @@ public class Main {
     public static void main(String[] args) {
 
         //Problem 1
+        System.out.println("String Problem 1");
         for(String s: String_Problem_1())
         {
             System.out.println(s);
         }
 
         //Problem 2
+        System.out.println("\n"+"String Problem 2");
         System.out.println("hello vs hello :"+String_Problem_2("hello","hello"));
         System.out.println("hello vs Hello :"+String_Problem_2("hello","Hello"));
 
         //Problem 3
+        System.out.println("\n"+"String Problem 3");
         for(String s: String_Problem_3())
         {
             System.out.println(s);
         }
-
+        //Problem 4
+        System.out.println("\n"+"String Problem 4");
+        String[] strs={"i ","am ","a ","dog,"};
+        String[] strs2={"i ","am ","a ","cat ","too !"};
+        List<String[]> l = new ArrayList<String[]>();
+        l.add(strs);
+        l.add(strs2);
+        System.out.println(String_Problem_4(l));
 
 
     }
