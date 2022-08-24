@@ -51,14 +51,34 @@ public class Main {
         }
     return s;
     }
+    public final class Happy{
+        private static final int score =100;
+
+        public static final void changeScore()
+        {
+            score=1;
+        }
+    }
+
 
     public static void main(String[] args) {
 
         //Problem 1
+        for(String s: String_Problem_1())
+        {
+            System.out.println(s);
+        }
 
         //Problem 2
+        System.out.println("hello vs hello :"+String_Problem_2("hello","hello"));
+        System.out.println("hello vs Hello :"+String_Problem_2("hello","Hello"));
 
         //Problem 3
+        for(String s: String_Problem_3())
+        {
+            System.out.println(s);
+        }
+
 
 
     }
