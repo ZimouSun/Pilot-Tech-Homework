@@ -56,9 +56,79 @@ public class Main {
 
         public static final void changeScore()
         {
-            score=1;
+            //score=1;
         }
     }
+   // Given a database table “Book” with columns (id, isbn, name, author, publish date), define a java class that matches this table and then use a static block to initialize this table with some records
+    public class BookTable
+   {
+
+       private static List<Integer> ids=new ArrayList<Integer>();
+       private static List<Integer> isbns=new ArrayList<Integer>();
+       private static List<String> names=new ArrayList<String>();
+       private static List<String> authors=new ArrayList<String>();;
+       private static List<String> publish_dates=new ArrayList<String>();;
+
+       static {
+
+           ids.add(1);
+           ids.add(2);
+
+           isbns.add(1);
+           isbns.add(2);
+
+           names.add("A");
+           names.add("B");
+
+           authors.add("alan");
+           authors.add("sun");
+
+           publish_dates.add("1/1/1111");
+           publish_dates.add("2/2/2222");
+
+
+       }
+
+       public static List<Integer> getIds() {
+           return ids;
+       }
+
+       public static void setIds(List<Integer> ids) {
+           BookTable.ids = ids;
+       }
+
+       public static List<Integer> getIsbns() {
+           return isbns;
+       }
+
+       public static void setIsbns(List<Integer> isbns) {
+           BookTable.isbns = isbns;
+       }
+
+       public static List<String> getNames() {
+           return names;
+       }
+
+       public static void setNames(List<String> names) {
+           BookTable.names = names;
+       }
+
+       public static List<String> getAuthors() {
+           return authors;
+       }
+
+       public static void setAuthors(List<String> authors) {
+           BookTable.authors = authors;
+       }
+
+       public static List<String> getPublish_dates() {
+           return publish_dates;
+       }
+
+       public static void setPublish_dates(List<String> publish_dates) {
+           BookTable.publish_dates = publish_dates;
+       }
+   }
 
 
     public static void main(String[] args) {
