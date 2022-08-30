@@ -1,8 +1,7 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.Serializable;
+import java.util.*;
 
 /**
  * Zimou Sun
@@ -282,5 +281,187 @@ class MasterCard extends CreditCard
     {
         return this.cardType.equals(cardType);
     }
+
+    //Static polymorphism
+    void print(){
+
+    }
+    void print(int a)
+    {
+
+    }
+
+    //Dynamic polymorphism
+    @Override
+    public void payBill(double bill)
+    {
+        int SERVICE_FEE=1;
+        accountBalance+=bill-SERVICE_FEE;
+    }
 }
-//Define an abstract class “CreditCard” which contains fields (holderName, cardNumber, accountBalance, cardType), and not-implemented method “isCardAcceptable” with argument cardType, and implemented method “payBill(double bill)”. Define two classes “VisaCard” and “MasterCard” both should inherit this “CreditCard” class and you should define constructor for both classes and implement the “isCardAcceptable” method. // difference between abstract method and interface
+
+ class Employee implements Serializable
+{
+    // default field
+    String name;
+
+    // public field
+    public String id;
+
+    // private salary
+    private double salary;
+
+    //arg-constructor to initialize fields
+    public Employee(String name, String id,
+                    double salary)
+    {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+    }
+
+    // getter method for name
+    public String getName()
+    {
+        return name;
+    }
+
+    // getter method for id
+    public String getId()
+    {
+        return id;
+    }
+
+    // getter method for salary
+    public Double getSalary()
+    {
+        return salary;
+    }
+}
+//Create a singleton class called “AppleDesignerFactory”
+class AppleDesignerFactory
+{
+    private static AppleDesignerFactory instance;
+    private AppleDesignerFactory(){};
+    public synchronized AppleDesignerFactory getInstance()
+    {
+        if(instance==null)
+        {
+            instance=new AppleDesignerFactory();
+        }
+
+        return instance;
+    }
+
+    protected Object  clone() throws CloneNotSupportedException
+    {
+    throw new CloneNotSupportedException();
+    }
+
+    protected Object readResolve()
+    {
+        return instance;
+    }
+
+}
+
+ class Currency
+{
+    String name;
+
+}
+class CNY extends Currency{
+
+     CNY()
+     {
+         name="CNY";
+     }
+
+}
+class USD extends Currency
+{
+    public USD() {
+        name="USD";
+    }
+}
+class CurrencyExchange{
+
+     public static Currency getCurrency(String country)
+     {
+         if(country.equals("USA"))
+         {
+             return new USD();
+         }
+         if (country.equals("China"))
+         {
+             return new CNY();
+         }
+         return null;
+     }
+
+
+}
+
+class ParkingLot{
+
+     private Map<Car, Integer> lots ;
+     private Set<Integer> availables; //
+     //Constructor
+
+    public ParkingLot() {
+        this.lots = new HashMap<Car,Integer>() ;
+        this.availables= new HashSet<Integer>() ;
+        for(int i=0;i<11;i++)
+            availables.add(i);
+    }
+
+
+    //Enter
+    public boolean Enter(Car c)
+    {
+        if(this.availables.isEmpty())
+        {
+            return false;
+        }
+        else {
+            Iterator<Integer> i= this.availables.iterator();
+            Integer index = i.next();
+            lots.put(c,index);
+            availables.remove(index);
+            return true;
+        }
+
+    }
+
+     //Exit
+     public void Exit(Car c)
+     {
+
+
+
+         Integer index = lots.get(c);
+         lots.remove(index);
+         availables.add(index);
+
+
+
+     }
+
+     protected static class Car
+     {
+         String name;
+
+         public Car(String name) {
+             this.name = name;
+         }
+
+         public String getName() {
+             return name;
+         }
+
+         public void setName(String name) {
+             this.name = name;
+         }
+
+     }
+}
