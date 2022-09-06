@@ -2,6 +2,9 @@ package org.example;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Zimou Sun
@@ -50,7 +53,22 @@ public class Main {
         }
     return s;
     }
-    public final class Happy{
+    public static void runSameTime() throws ExecutionException, InterruptedException {
+        ExecutorService service = Executors.newFixedThreadPool(2);
+        Future<String> ma = service.submit(new A());
+        Future<String> mb = service.submit(new B());
+        boolean allDone= false;
+        while(!allDone)
+        {
+            if(ma.isDone()&& mb.isDone())
+            {
+                System.out.println(mb.get()+" "+ma.get());
+                allDone=true;
+            }
+        }
+        return;
+    }
+    public static final class Happy{
         private static final int score =100;
 
         public static final void changeScore()
@@ -58,8 +76,32 @@ public class Main {
             //score=1;
         }
     }
+    public static final class A implements Callable
+    {
+        @Override
+        public Object call() throws Exception {
+            return getMethod();
+        }
 
-    public static void main(String[] args) {
+        public  String getMethod()
+        {
+            return "A.getMethod";
+        }
+    }
+    public static final class B implements Callable
+    {
+        @Override
+        public Object call() throws Exception {
+            return getMethod();
+        }
+        public String getMethod()
+        {
+            return "B.getMethod";
+        }
+    }
+
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         //String ----------------------------------------------------------------------------------------------
         //Problem 1
         System.out.println("String Problem 1");
@@ -146,7 +188,7 @@ public class Main {
         }
 
         //Problem 3
-        System.out.println("\n Collection Problem 3");
+        System.out.println("\nCollection Problem 3");
         Map<Integer,String> database = new HashMap<Integer, String >();
         //Create
         database.put(1,"this is the first record");
@@ -157,14 +199,49 @@ public class Main {
         //Delete
         database.remove(1);
 
-        //
+        //ExecutorService
+        //Problem 1
+        System.out.println("\nExecutorService Problem 1 ");
+        runSameTime();
+
+        //Java8
+        //Problem 1
+        VisaCard v=new VisaCard("alan",123,111);
+        MasterCard mc=new MasterCard("alan",123,111);
+        v.payBill_2(1);
+        CreditCard_2.refund(12);
+
 
 
 
 
     }
 }
+//Java 8
 
+class MyStream {
+    public interface Multi
+    {
+        public int multiple(int i);
+    }
+    public static List<Integer> MyMap(List<Integer> list)
+    {
+       List<Integer> a = list.stream().map(o->o*3).collect(Collectors.toList());
+
+       return a;
+    }
+    public static void main(String args[])
+    {
+
+        Multi m = (i)-> i*3;
+        List<Integer> l = Arrays.asList(1,2,3,4,5);
+        List<Integer> result = MyStream.MyMap(l);
+        for(Integer i : result)
+        {
+            System.out.println(i);
+        }
+    }
+}
 //Exception Handling
 
  class CardTypeException extends Exception
@@ -356,7 +433,21 @@ abstract class CreditCard {
          accountBalance+=bill;
      }
 }
-class VisaCard extends CreditCard
+interface CreditCard_2
+{
+
+    default void payBill_2(double bill)
+    {
+       System.out.println("pay "+bill);
+    }
+
+    static void refund(double amount)
+    {
+        System.out.println("refund "+amount);
+    }
+
+}
+class VisaCard extends CreditCard implements CreditCard_2
 {
     public VisaCard(String holderName,int cardNumber,double accountBalance) {
         this.holderName=holderName;
@@ -369,7 +460,7 @@ class VisaCard extends CreditCard
         return this.cardType.equals(cardType);
     }
 }
-class MasterCard extends CreditCard
+class MasterCard extends CreditCard implements CreditCard_2
 {
     public MasterCard(String holderName,int cardNumber,double accountBalance) {
         this.holderName=holderName;
