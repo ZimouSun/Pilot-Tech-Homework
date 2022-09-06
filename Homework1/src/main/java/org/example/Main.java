@@ -107,7 +107,107 @@ public class Main {
 
         //Problem 2
 
+        //Collection
+        //Problem 1
+        ArrayList<String> a=new ArrayList<String>(Arrays.asList("a","b","c"));
+        ArrayList<String> b=new ArrayList<String>(Arrays.asList("a","b"));
+        Set<String> trueFriend = new HashSet<String>(a);
+        trueFriend.retainAll(b);
+        Iterator<String> it = trueFriend.iterator();
+        System.out.println("\n Collection Problem 1 ");
+        while(it.hasNext())
+        {
+            System.out.println(it.next());
+        }
 
+        //Problem 2
+        System.out.println("\n Collection Problem 2 :");
+        String str1= "sdjjsljfldsjfdk";
+
+        Map<Character,Integer> map = new HashMap<Character,Integer>();
+        for( int i=0; i<str1.length();i++)
+        {
+            Character c = str1.charAt(i);
+            if(map.get(c)!=null)
+            {   Integer k = map.get(c);
+                map.put(c,++k);
+            }
+            else {
+                map.put(c,1);
+            }
+        }
+        for( Character c : map.keySet())
+        {
+            Integer i = map.get(c);
+            if(i!=null && i >1);
+            {
+                System.out.println(c +" "+i);
+            }
+        }
+
+        //Problem 3
+        System.out.println("\n Collection Problem 3");
+        Map<Integer,String> database = new HashMap<Integer, String >();
+        //Create
+        database.put(1,"this is the first record");
+        //Read
+        database.get(1);
+        //Update
+        database.put(1,"this is the first record  update");
+        //Delete
+        database.remove(1);
+
+        //
+
+
+
+
+    }
+}
+
+//Exception Handling
+
+ class CardTypeException extends Exception
+{
+    CardTypeException(String msg)
+    {
+        super(msg);
+    }
+}
+class AddressException extends Exception
+{
+    AddressException(String msg)
+    {
+        super(msg);
+    }
+}
+class ExceptionHandler
+{
+    static void handleException(String cardType, String address)
+    {
+       try {
+            if (!cardType.equals("AMEX")) {
+                throw new CardTypeException("Not AMEX");
+            }
+            if(!address.equals("US"))
+            {
+                throw new AddressException("Not US");
+            }
+        } catch (CardTypeException e) {
+           System.out.println(e);
+       } catch (AddressException e) {
+           System.out.println(e);
+       }catch (Exception e)
+       {
+           System.out.println(e);
+       }
+
+    }
+    public static void main(String[] args)
+    {
+        ExceptionHandler.handleException("AMEX","US");
+        ExceptionHandler.handleException("AEX","US");
+        ExceptionHandler.handleException("AMEX","U");
     }
 }
 // Given a database table “Book” with columns (id, isbn, name, author, publish date), define a java class that matches this table and then use a static block to initialize this table with some records
@@ -414,9 +514,18 @@ class ParkingLot{
         for(int i=0;i<11;i++)
             availables.add(i);
     }
+    //print
+    public void update(){
+        System.out.println("Parking:");
+        for(Car c : lots.keySet()) {
+            System.out.println(c.name +" at " +lots.get(c));
+        }
+        System.out.println();
+
+    }
 
 
-    //Enter
+    //Enter the parking
     public boolean Enter(Car c)
     {
         if(this.availables.isEmpty())
@@ -428,20 +537,22 @@ class ParkingLot{
             Integer index = i.next();
             lots.put(c,index);
             availables.remove(index);
+            update();
             return true;
         }
 
     }
 
-     //Exit
+     //Exit the parking
      public void Exit(Car c)
      {
 
 
 
          Integer index = lots.get(c);
-         lots.remove(index);
+         lots.remove(c);
          availables.add(index);
+         update();
 
 
 
@@ -463,5 +574,28 @@ class ParkingLot{
              this.name = name;
          }
 
+         @Override
+         public boolean equals(Object o) {
+             if (this == o)
+                 return true;
+             if (o == null || getClass() != o.getClass())
+                 return false;
+             Car that = (Car) o;
+             return that.name.equals(this.name);
+         }
+
+         @Override
+         public int hashCode() {
+             return this.name.hashCode();
+         }
+
+     }
+     public static void main(String[] args)
+     {
+         ParkingLot p = new ParkingLot();
+         Car a=new Car("a");
+         p.Enter(a);
+         p.Enter(new Car("b"));
+         p.Exit(a);
      }
 }
