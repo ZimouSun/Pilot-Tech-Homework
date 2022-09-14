@@ -1,0 +1,35 @@
+public class Department {
+    private int deptid;
+    private String name;
+    private String loc;
+
+    public Department(int deptid, String name, String loc) {
+        this.deptid = deptid;
+        this.name = name;
+        this.loc = loc;
+    }
+
+    public int getDeptid() {
+        return deptid;
+    }
+
+    private void setDeptid(int deptid) {
+        this.deptid = deptid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    private void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLoc() {
+        return loc;
+    }
+
+    private void setLoc(String loc) {
+        this.loc = loc;
+    }
+}
