@@ -2,19 +2,24 @@ package alan.Homework2.controller;
 
 import alan.Homework2.model.Department;
 import alan.Homework2.service.DepartmentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/department")
 public class DepartmentController {
 
+    @Autowired
     private DepartmentService service;
 
     @GetMapping(value = "/all")
     public List<Department> getAllDepartments() {
+
         return service.getAllDepartments();
+
     }
 
     ;

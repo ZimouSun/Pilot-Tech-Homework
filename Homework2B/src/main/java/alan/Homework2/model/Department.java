@@ -13,6 +13,8 @@ public class Department {
 
     public Department(int deptid) {
         this.deptid=deptid;
+        this.name = "";
+        this.loc = "";
     }
 
     public int getDeptid() {

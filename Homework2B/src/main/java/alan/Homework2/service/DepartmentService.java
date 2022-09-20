@@ -3,9 +3,11 @@ package alan.Homework2.service;
 import alan.Homework2.DAO.DepartmentRepository;
 import alan.Homework2.model.Department;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DepartmentService {
     @Autowired
     DepartmentRepository repo;
@@ -14,7 +16,7 @@ public class DepartmentService {
         return repo.findDepartmentById(id);
     }
     public List<Department> getAllDepartments(){
-        return repo.getAllDepartments();
+        return repo.getAllDepartments() ;
     }
 
     public void updateDepartment(int id, Department temp) {

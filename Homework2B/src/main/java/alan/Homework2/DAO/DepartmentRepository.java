@@ -53,6 +53,5 @@ public class DepartmentRepository {
         departments.clear();
     }
 
-    public void updateDeparment(Department temp) {
-    }
+
 }
