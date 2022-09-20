@@ -1,6 +1,7 @@
 package alan.Homework2.service;
 
 import alan.Homework2.DAO.DepartmentRepository;
+import alan.Homework2.helper.DepartmentHelper;
 import alan.Homework2.model.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +13,14 @@ public class DepartmentService {
     @Autowired
     DepartmentRepository repo;
 
+    @Autowired
+    DepartmentHelper helper;
+
     public Department findDepartmentById(int id) {
         return repo.findDepartmentById(id);
     }
     public List<Department> getAllDepartments(){
-        return repo.getAllDepartments() ;
+        return helper.getAllDepartments() ;
     }
 
     public void updateDepartment(int id, Department temp) {
