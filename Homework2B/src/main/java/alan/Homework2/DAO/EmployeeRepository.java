@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class EmployeeRepository{
@@ -27,19 +26,14 @@ public class EmployeeRepository{
         return employees.stream().filter(e -> id == e.getId()).findFirst().orElse(null);
     }
 
-    public void updateEmployee(int id, Employee temp){
+    public void updateEmployee( int id,  Employee temp){
         Employee target = this.findEmployeeById(id);
         target.setName(temp.getName());
     }
 
-    public void updateEmployee(Employee temp){
-        Employee target = employees.stream().filter(e -> temp.getId() == e.getId()).findFirst().orElse(null);
-        if(target != null){
-            target.setName(temp.getName());
-        }
-    }
 
-    public void newEmployee(Employee temp){
+
+    public void addEmployee(Employee temp){
         //temp should not exist already in employees -- sanity check
         int maxId = employees.stream().mapToInt(e -> e.getId()).max().getAsInt();
         temp.setId(maxId + 1);
