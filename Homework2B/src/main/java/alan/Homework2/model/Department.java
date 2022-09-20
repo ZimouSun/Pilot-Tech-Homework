@@ -1,3 +1,5 @@
+package alan.Homework2.model;
+
 public class Department {
     private int deptid;
     private String name;

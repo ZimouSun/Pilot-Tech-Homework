@@ -10,6 +10,8 @@ public class DepartmentDAOImpl implements DepartmentDAO{
         Departments.add(new Department(0,"St.Gabriel's", "171 Washington st, Brighton, MA"));
     }
 
+
+
     @Override
     public List<Department> getAllDepartments() {
         return Departments;

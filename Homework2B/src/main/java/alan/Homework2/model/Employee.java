@@ -1,3 +1,5 @@
+package alan.Homework2.model;
+
 import java.util.Date;
 
 public class Employee {
@@ -22,6 +24,9 @@ public class Employee {
 
     public Employee() {
 
+    }
+
+    public Employee(int i) {
     }
 
     public int getId() {
@@ -52,11 +57,11 @@ public class Employee {
         return deptid;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
