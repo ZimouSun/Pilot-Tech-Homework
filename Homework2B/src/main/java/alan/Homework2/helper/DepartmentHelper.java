@@ -3,11 +3,12 @@ package alan.Homework2.helper;
 import alan.Homework2.DAO.DepartmentRepository;
 import alan.Homework2.model.Department;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Component
 public class DepartmentHelper {
 
     @Autowired
