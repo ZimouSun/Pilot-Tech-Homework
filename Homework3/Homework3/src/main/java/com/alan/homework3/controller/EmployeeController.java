@@ -1,9 +1,8 @@
-package alan.Homework2.controller;
+package com.alan.homework3.controller;
 
-import alan.Homework2.model.Department;
-import alan.Homework2.model.Employee;
-import alan.Homework2.service.DepartmentService;
-import alan.Homework2.service.EmployeeService;
+
+import com.alan.homework3.model.Employee;
+import com.alan.homework3.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +36,7 @@ public class EmployeeController {
     ;
     @PostMapping(value ="/update/{id}")
     public void updateEmployee(@PathVariable int id, @RequestBody Employee d) {
-        service.updateEmployee(id,d);
+        service.updateEmployee(d);
     }
 
     ;

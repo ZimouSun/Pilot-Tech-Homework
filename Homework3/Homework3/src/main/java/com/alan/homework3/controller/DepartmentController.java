@@ -1,7 +1,8 @@
-package alan.Homework2.controller;
+package com.alan.homework3.controller;
 
-import alan.Homework2.model.Department;
-import alan.Homework2.service.DepartmentService;
+
+import com.alan.homework3.model.Department;
+import com.alan.homework3.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +40,7 @@ public class DepartmentController {
     ;
     @PostMapping(value ="/update/{id}")
     public void updateDepartment(@PathVariable int id, @RequestBody Department d) {
-        service.updateDepartment(id,d);
+        service.updateDepartment(d);
     }
 
     ;
